@@ -68,12 +68,8 @@ SUM <- data.frame(SUM)
 SUM$D <- as.character(labels(SUM)[[1]])
 SUM$D <- strptime(SUM$D, "%Y-%m-%d")  ##transform the 'D' column to POSIXlt/POSIXct 
 ## format
-plot(SUM$D, SUM$S, type = "h", lwd = 5, col = "#ff2500", xlab = "Date", ylab = "Total Steps", 
+plot(SUM$D, SUM$SUM, type = "h", lwd = 5, col = "#ff2500", xlab = "Date", ylab = "Total Steps", 
     main = "Steps for Every Day")  ##Plot Histogram
-```
-
-```
-## Warning: Name partially matched in data frame
 ```
 
 ![plot of chunk Part 2.1](figure/Part_2_1.png) 
@@ -245,17 +241,17 @@ ACT2$I2 <- I2
 ACT2 <- ACT2[, -c(1, 2)]
 s <- split(ACT2, ACT2$D2)
 SUM2 <- sapply(s, function(x) sum(x[, c("S2")]))
-SUM2 <- data.frame(SUM)
+SUM2 <- data.frame(SUM2)
 SUM2$D2 <- as.character(labels(SUM2)[[1]])
 SUM2$D2 <- strptime(SUM2$D2, "%Y-%m-%d")
-plot(SUM2$D, SUM2$SUM, type = "h", lwd = 5, col = "#ff2500", xlab = "Date", 
+plot(SUM2$D2, SUM2$SUM2, type = "h", lwd = 5, col = "#ff2500", xlab = "Date", 
     ylab = "Total Steps", main = "Steps for Every Day")
 ```
 
 ![plot of chunk Part 4.4](figure/Part_4_4.png) 
 
 ```r
-mean(SUM2$SUM)
+mean(SUM2$SUM2)
 ```
 
 ```
@@ -263,14 +259,14 @@ mean(SUM2$SUM)
 ```
 
 ```r
-median(SUM2$SUM)
+median(SUM2$SUM2)
 ```
 
 ```
-## [1] 10765
+## [1] 10766
 ```
 
-Compared to those in Part 2, apparently the mean and median numbers do not change at all, suggesting that such imputing has no impact of the exploratory analysis index of daily total steps number.
+Compared to those in Part 2, apparently the mean does not change at all but the median changes a little (from 10765 to 10766), suggesting that such imputing has quite limited impact of the exploratory analysis index of daily total steps number.
   
 
 ## Are there differences in activity patterns between weekdays and weekends?
